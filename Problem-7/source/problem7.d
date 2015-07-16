@@ -19,12 +19,7 @@ auto primes()
     {
         enum bool empty = false;
         @property front() { return _p; }
-        
-        @property popFront()
-        {
-            while (!isPrime(++_p)){}
-        }
-        
+        @property popFront() { while (!isPrime(++_p)){} }
     private:
         ulong _p = 2;
     }
