@@ -1,7 +1,8 @@
+import std.traits : isIntegral;
 import std.algorithm : reduce, max;
 import std.stdio : write;
 
-auto primeFactors(N)(N n) if (__traits(isIntegral, N))
+auto primeFactors(N)(N n) if (isIntegral!N)
 {
     static struct R
     {
