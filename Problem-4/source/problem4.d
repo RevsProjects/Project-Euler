@@ -1,6 +1,7 @@
+import std.traits : isIntegral;
 import std.stdio : write;
 
-bool isPalindrome(N, N base = 10)(N n) if (__traits(isIntegral, N) && base > 1)
+bool isPalindrome(N, N base = 10)(N n) if (isIntegral!N && base > 1)
 {
     if (n < 0)
         return false;
