@@ -1,0 +1,38 @@
+import std.traits : isIntegral;
+import std.stdio : write;
+
+bool isPrime(N)(N n) if (isIntegral!N)
+{
+    if (n < 2)
+        return false;
+    N i = 2;
+    while (i * i <= n)
+        if (n % i++ == 0)
+            return false;
+    return true;
+}
+
+auto primes()
+{
+    static struct R
+    {
+        enum bool empty = false;
+        @property front() { return _p; }
+        @property popFront() { while (!isPrime(++_p)){} }
+    private:
+        ulong _p = 2;
+    }
+    return R();
+}
+
+void main()
+{
+    ulong sum;
+    foreach (p; primes)
+    {
+        if (p > 2E6)
+            break;
+        sum += p;
+    }
+    sum.write;
+}
